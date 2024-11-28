@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@use "variables" as v;
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Archivo", sans-serif;
+}
+
+body {
+  background: v.$base-color;
+  color: v.$white-color;
+}
+
+.flex {
+  display: flex;
+
+  &-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+}
+
+button {
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 32px;
+  border: 0;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &.primary {
+    background: v.$primary-color;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

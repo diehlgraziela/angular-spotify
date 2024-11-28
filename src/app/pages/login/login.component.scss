@@ -1,0 +1,13 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  gap: 48px;
+
+  img {
+    width: 50%;
+  }
+
+  button {
+    min-width: 200px;
+  }
+}
