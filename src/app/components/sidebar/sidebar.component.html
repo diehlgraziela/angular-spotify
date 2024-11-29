@@ -1,0 +1,35 @@
+<div class="sidebar flex flex-column">
+  <div class="logo flex flex-justify-center">
+    <img src="spotify-logo.png" alt="Logo Spotify" />
+  </div>
+
+  <ul class="nav-options flex flex-column w-100">
+    @for(option of navOptions; track option.id){
+
+    <app-nav-option
+      [name]="option.name"
+      [icon]="option.icon"
+      [route]="option.route"
+      [active]="selectedOption === option.id"
+      (click)="selectedOption = option.id"
+    ></app-nav-option>
+    }
+  </ul>
+
+  <div class="playlists">
+    <span class="font-weight-semibold font-size-md">Playlists</span>
+
+    <ul class="playlists-options">
+      @for(playlist of playlists; track playlist.id){
+      <app-nav-option
+        [name]="playlist.name"
+        [icon]="'headphones'"
+        [active]="selectedOption === playlist.id"
+        (click)="selectedOption = playlist.id"
+      ></app-nav-option>
+      }
+    </ul>
+  </div>
+</div>
+
+<div class="user-info">grazi</div>

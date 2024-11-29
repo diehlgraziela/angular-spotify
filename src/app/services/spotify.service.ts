@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SpotifyConfiguration } from '../../environments/environment';
 import Spotify from 'spotify-web-api-js';
-import { IUser } from '../interfaces/IUser';
+import { INavOptions } from '../interfaces/INavOptions';
 
 @Injectable({
   providedIn: 'root',
@@ -12,27 +12,6 @@ export class SpotifyService {
 
   constructor() {
     this.spotifyApi = new Spotify();
-  }
-
-  async initUser() {
-    if (this.user) return true;
-
-    const token = localStorage.getItem('token');
-
-    if (!token) return false;
-
-    try {
-      this.setAccessToken(token);
-      await this.getSpotifyUser();
-      return Boolean(this.user);
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  }
-
-  async getSpotifyUser() {
-    this.user = await this.spotifyApi.getMe();
   }
 
   getLoginUrl() {
@@ -55,5 +34,39 @@ export class SpotifyService {
   setAccessToken(token: string) {
     this.spotifyApi.setAccessToken(token);
     localStorage.setItem('token', token);
+  }
+
+  async getSpotifyUser() {
+    if (this.user) return true;
+
+    const token = localStorage.getItem('token');
+
+    if (!token) return false;
+
+    try {
+      this.setAccessToken(token);
+      this.user = await this.spotifyApi.getMe();
+      return Boolean(this.user);
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  async getUserPlaylists(offset = 0, limit = 50): Promise<INavOptions[]> {
+    const playlists = await this.spotifyApi.getUserPlaylists(this.user.id, {
+      limit,
+      offset,
+    });
+
+    return playlists.items
+      .filter((playlist) => playlist?.id)
+      .map((playlist) => {
+        return {
+          name: playlist.name,
+          image: playlist.images[0].url,
+          id: playlist.id,
+        };
+      });
   }
 }

@@ -1,0 +1,13 @@
+@use "variables" as v;
+
+.nav-link {
+  padding: 12px;
+  gap: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+
+  &.active {
+    background-color: v.$base-color;
+    color: v.$primary-color;
+  }
+}

@@ -1,0 +1,42 @@
+@use "variables" as v;
+
+:host {
+  background-color: v.$base-color-lighten;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 100%;
+  border-radius: 16px;
+  padding: 1rem;
+
+  .sidebar {
+    flex: 1;
+  }
+
+  .logo img {
+    width: 160px;
+  }
+
+  .nav-options {
+    margin-top: 1rem;
+    gap: 4px;
+  }
+
+  .playlists {
+    margin-top: 2rem;
+    max-height: 40vh;
+    overflow-y: auto;
+
+    span {
+      color: v.$light-grey-color;
+    }
+
+    .playlists-options {
+      margin-top: 1rem;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  }
+}

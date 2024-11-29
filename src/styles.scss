@@ -1,5 +1,6 @@
 @use "variables" as v;
 @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap");
+@import "primeicons/primeicons.css";
 
 * {
   margin: 0;
@@ -11,19 +12,6 @@
 body {
   background: v.$base-color;
   color: v.$white-color;
-}
-
-.flex {
-  display: flex;
-
-  &-center {
-    align-items: center;
-    justify-content: center;
-  }
-
-  &-column {
-    flex-direction: column;
-  }
 }
 
 button {
@@ -41,4 +29,46 @@ button {
   &:hover {
     opacity: 0.9;
   }
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex {
+  display: flex;
+
+  &-center-all {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-align-center {
+    align-items: center;
+  }
+
+  &-justify-center {
+    justify-content: center;
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.font-weight-semibold {
+  font-weight: 600;
+}
+
+.font-size-md {
+  font-size: 1.125rem;
 }

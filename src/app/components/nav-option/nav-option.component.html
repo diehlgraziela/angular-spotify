@@ -1,0 +1,10 @@
+<li class="nav-option w-100">
+  <a
+    routerLink="{{ route() }}"
+    [class.active]="active()"
+    (click)="click()"
+    class="nav-link flex"
+  >
+    <i class="pi pi-{{ icon() }}"></i> {{ name() }}
+  </a>
+</li>
