@@ -88,4 +88,28 @@ export class SpotifyService {
       return [];
     }
   }
+
+  async getLikedSongs(
+    offset = 0,
+    limit: 50
+  ): Promise<SpotifyApi.SavedTrackObject[]> {
+    try {
+      const songs = await this.spotifyApi.getMySavedTracks({ limit, offset });
+
+      return songs.items;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+
+  // TODO - Use Spotify's sdk to play song
+  async playSong(songUri: string): Promise<void> {
+    try {
+      await this.spotifyApi.queue(songUri);
+      await this.spotifyApi.skipToNext();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

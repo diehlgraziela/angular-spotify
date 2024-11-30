@@ -1,14 +1,14 @@
 @use "variables" as v;
 
-$h-logo: 60px;
+$h-logo: 50px;
 $h-nav-options: 120px;
 $h-user-info: 60px;
 
 :host {
-  background-color: v.$base-color-lighten;
+  background-color: v.$base-color-lighten-1;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
   min-height: 100%;
   border-radius: 16px;
   padding: 1rem;
@@ -22,7 +22,6 @@ $h-user-info: 60px;
   }
 
   .nav-options {
-    margin-top: 1rem;
     gap: 4px;
     height: $h-nav-options;
   }
@@ -38,24 +37,6 @@ $h-user-info: 60px;
       max-height: calc(75vh - ($h-logo + $h-nav-options + $h-user-info));
       overflow-y: auto;
       margin-top: 1rem;
-
-      &::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: v.$light-grey-color;
-        border-radius: 4px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: #686868;
-        border-radius: 4px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: #575757;
-      }
     }
   }
 

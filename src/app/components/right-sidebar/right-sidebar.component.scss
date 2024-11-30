@@ -1,0 +1,8 @@
+@use "variables" as v;
+
+.right-sidebar {
+  height: 100%;
+  width: 100%;
+  background-color: v.$base-color-lighten-1;
+  border-radius: 8px;
+}

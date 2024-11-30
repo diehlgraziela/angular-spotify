@@ -1,8 +1,8 @@
 <div
   class="card flex flex-justify-between flex-align-center mt-4 w-100"
-  [style.background-image]="'url(' + topArtist.images[0].url + ')'"
+  [style.background-image]="'url(' + topArtist?.images[0]?.url + ')'"
 >
   <div class="card-text flex flex-align-center">
-    <h3>{{ topArtist.name }}</h3>
+    <h3>{{ topArtist?.name }}</h3>
   </div>
 </div>

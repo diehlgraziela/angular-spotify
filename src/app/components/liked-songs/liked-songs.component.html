@@ -1,0 +1,32 @@
+<table class="w-100 mt-4">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Título</th>
+      <th>Álbum</th>
+      <th class="text-center"><i class="pi pi-clock"></i></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for(song of likedSongs; track song.track.id){
+    <tr (click)="playSong(song.track.uri)" (mouseenter)="hover = $index">
+      <td>
+        @if(hover === $index){
+        <i class="pi pi-play"></i>
+        } @else {
+        {{ $index + 1 }}
+        }
+      </td>
+      <td class="flex flex-column">
+        <span class="song-name">{{ song.track.name }}</span>
+        <span class="artists-names">
+          {{ getArtistsNames(song.track.artists) }}
+        </span>
+      </td>
+      <td>{{ song.track.album.name }}</td>
+      <td class="text-center">{{ song.track.duration_ms | msToMinutes }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

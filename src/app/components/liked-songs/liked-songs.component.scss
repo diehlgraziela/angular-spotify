@@ -1,0 +1,19 @@
+@use "variables" as v;
+
+tr {
+  color: v.$light-grey-color;
+
+  &:hover:not(thead tr) {
+    background: v.$base-color-lighten-3;
+    cursor: pointer;
+  }
+}
+
+.song-name {
+  color: v.$white-color;
+  font-weight: 500;
+}
+
+.artists-names {
+  font-size: 0.8rem;
+}

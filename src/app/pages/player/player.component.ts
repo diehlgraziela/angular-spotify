@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { RightSidebarComponent } from '../../components/right-sidebar/right-sidebar.component';
 
 @Component({
   selector: 'app-player',
-  imports: [RouterOutlet, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent, RightSidebarComponent],
   templateUrl: './player.component.html',
   styleUrl: './player.component.scss',
 })
