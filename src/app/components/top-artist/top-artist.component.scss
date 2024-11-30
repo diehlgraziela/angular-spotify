@@ -1,0 +1,14 @@
+.card {
+  padding: 0;
+  background-position: center;
+  background-size: 40%;
+  background-blend-mode: color-dodge;
+  height: 200px;
+
+  .card-text {
+    padding: 0 24px;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+  }
+}

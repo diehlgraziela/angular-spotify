@@ -1,0 +1,11 @@
+<div class="flex">
+  <div class="info">
+    <img src="{{ user.images[0].url }}" alt="Imagem de perfil" />
+    <span class="username" [title]="user.display_name">
+      {{ user.display_name }}
+    </span>
+  </div>
+  <button (click)="logout()" class="sign-out">
+    <i class="pi pi-sign-out"></i>
+  </button>
+</div>

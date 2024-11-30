@@ -1,37 +1,38 @@
 import { Component } from '@angular/core';
-import { NavOptionComponent } from '../nav-option/nav-option.component';
 import { SpotifyService } from '../../services/spotify.service';
 import { INavOptions } from '../../interfaces/INavOptions';
+import { NavOptionComponent } from '../nav-option/nav-option.component';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [NavOptionComponent],
+  imports: [NavOptionComponent, UserInfoComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  selectedOption = 'Home';
+  selectedOption = 'home';
   playlists: INavOptions[] = [];
   navOptions: INavOptions[] = [
     {
       name: 'Home',
       id: 'home',
       icon: 'home',
-      route: '/player',
+      route: '/player/home',
       active: true,
     },
     {
       name: 'Pesquisar',
       id: 'search',
       icon: 'search',
-      route: '/pesquisar',
+      route: '/player/pesquisar',
       active: false,
     },
     {
       name: 'Artistas',
       id: 'artists',
       icon: 'users',
-      route: '/artistas',
+      route: '/player/artistas',
       active: false,
     },
   ];

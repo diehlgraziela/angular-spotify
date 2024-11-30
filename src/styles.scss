@@ -14,6 +14,22 @@ body {
   color: v.$white-color;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
 button {
   font-size: 1rem;
   padding: 10px;
@@ -56,6 +72,10 @@ a {
     justify-content: center;
   }
 
+  &-justify-between {
+    justify-content: space-between;
+  }
+
   &-column {
     flex-direction: column;
   }
@@ -71,4 +91,21 @@ a {
 
 .font-size-md {
   font-size: 1.125rem;
+}
+
+.mt {
+  @for $i from 1 to 12 {
+    &-#{$i} {
+      margin-top: #{4 * $i}px;
+    }
+  }
+}
+
+.card {
+  box-shadow: rgba(4, 4, 4, 0.2) 0px 4px 16px 0px;
+  // border: 1px solid v.$base-color-lighten-2;
+  background-color: v.$base-color-lighten-2;
+  border-radius: 8px;
+  padding: 8px;
+  overflow: hidden;
 }

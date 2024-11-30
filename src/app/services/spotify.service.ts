@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SpotifyConfiguration } from '../../environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { INavOptions } from '../interfaces/INavOptions';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class SpotifyService {
   spotifyApi: Spotify.SpotifyWebApiJs = null;
   user: SpotifyApi.CurrentUsersProfileResponse;
 
-  constructor() {
+  constructor(private router: Router) {
     this.spotifyApi = new Spotify();
   }
 
@@ -53,6 +54,11 @@ export class SpotifyService {
     }
   }
 
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
   async getUserPlaylists(offset = 0, limit = 50): Promise<INavOptions[]> {
     const playlists = await this.spotifyApi.getUserPlaylists(this.user.id, {
       limit,
@@ -68,5 +74,18 @@ export class SpotifyService {
           id: playlist.id,
         };
       });
+  }
+
+  async getTopArtists(limit = 10): Promise<SpotifyApi.ArtistObjectFull[]> {
+    try {
+      const topArtists = await this.spotifyApi.getMyTopArtists({
+        limit,
+      });
+
+      return topArtists.items.map((artist) => artist);
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 }

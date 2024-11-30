@@ -1,0 +1,14 @@
+@use "variables" as v;
+
+:host {
+  display: flex;
+  gap: 1rem;
+
+  h2 {
+    color: v.$primary-color;
+  }
+
+  .my-songs {
+    flex: 0.8;
+  }
+}
