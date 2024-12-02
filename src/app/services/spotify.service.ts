@@ -3,6 +3,7 @@ import { SpotifyConfiguration } from '../../environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { INavOptions } from '../interfaces/INavOptions';
 import { Router } from '@angular/router';
+import { ISong } from '../interfaces/ISong';
 
 @Injectable({
   providedIn: 'root',
@@ -89,14 +90,20 @@ export class SpotifyService {
     }
   }
 
-  async getLikedSongs(
-    offset = 0,
-    limit: 50
-  ): Promise<SpotifyApi.SavedTrackObject[]> {
+  async getLikedSongs(offset = 0, limit: 50): Promise<ISong[]> {
     try {
       const songs = await this.spotifyApi.getMySavedTracks({ limit, offset });
 
-      return songs.items;
+      return songs.items.map((song) => {
+        return {
+          name: song.track.name,
+          uri: song.track.uri,
+          duration_ms: song.track.duration_ms,
+          id: song.track.id,
+          artists: song.track.artists,
+          album: song.track.album,
+        };
+      });
     } catch (error) {
       console.error(error);
       return [];
@@ -110,6 +117,28 @@ export class SpotifyService {
       await this.spotifyApi.skipToNext();
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async getCurrentSong(): Promise<ISong> {
+    try {
+      const song = await this.spotifyApi.getMyCurrentPlayingTrack();
+
+      return {
+        name: song.item.name,
+        uri: song.item.uri,
+        duration_ms: song.item.duration_ms,
+        id: song.item.id,
+        album: {
+          images: song.item.album.images,
+          name: song.item.album.name,
+          uri: song.item.album.uri,
+        },
+        artists: song.item.artists,
+      };
+    } catch (error) {
+      console.error(error);
+      return null;
     }
   }
 }

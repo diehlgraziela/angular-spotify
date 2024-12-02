@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { MsToMinutesPipe } from '../../pipes/ms-to-minutes.pipe';
+import { PlayerService } from '../../services/player.service';
+import { Subscription } from 'rxjs';
+import { ISong } from '../../interfaces/ISong';
 
 @Component({
   selector: 'app-liked-songs',
@@ -8,12 +11,22 @@ import { MsToMinutesPipe } from '../../pipes/ms-to-minutes.pipe';
   templateUrl: './liked-songs.component.html',
   styleUrl: './liked-songs.component.scss',
 })
-export class LikedSongsComponent {
-  likedSongs: SpotifyApi.SavedTrackObject[];
+export class LikedSongsComponent implements OnDestroy {
+  likedSongs: ISong[];
+  currentSong: ISong;
+  subscriptions: Subscription[] = [];
   hover: number;
 
-  constructor(private spotifyService: SpotifyService) {
+  constructor(
+    private spotifyService: SpotifyService,
+    private playerService: PlayerService
+  ) {
     this.getLikedSongs();
+    this.getCurrentSong();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   async getLikedSongs() {
@@ -24,7 +37,16 @@ export class LikedSongsComponent {
     return artists.map((artist) => artist.name).join(', ');
   }
 
-  async playSong(songUri: string) {
-    await this.spotifyService.playSong(songUri);
+  async playSong(song: ISong) {
+    await this.spotifyService.playSong(song.uri);
+    this.playerService.setCurrentSong(song);
+  }
+
+  getCurrentSong() {
+    const subscription = this.playerService.currentSong.subscribe(
+      (song) => (this.currentSong = song)
+    );
+
+    this.subscriptions.push(subscription);
   }
 }

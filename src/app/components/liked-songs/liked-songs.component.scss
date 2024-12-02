@@ -7,6 +7,14 @@ tr {
     background: v.$base-color-lighten-3;
     cursor: pointer;
   }
+
+  &.active {
+    background: v.$base-color-lighten-3;
+  }
+
+  &.active .song-name {
+    color: v.$primary-color;
+  }
 }
 
 .song-name {

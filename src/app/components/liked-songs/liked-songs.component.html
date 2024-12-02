@@ -9,8 +9,12 @@
   </thead>
 
   <tbody>
-    @for(song of likedSongs; track song.track.id){
-    <tr (click)="playSong(song.track.uri)" (mouseenter)="hover = $index">
+    @for(song of likedSongs; track song.id){
+    <tr
+      (click)="playSong(song)"
+      (mouseenter)="hover = $index"
+      [class.active]="song.id === currentSong.id"
+    >
       <td>
         @if(hover === $index){
         <i class="pi pi-play"></i>
@@ -19,13 +23,13 @@
         }
       </td>
       <td class="flex flex-column">
-        <span class="song-name">{{ song.track.name }}</span>
+        <span class="song-name">{{ song.name }}</span>
         <span class="artists-names">
-          {{ getArtistsNames(song.track.artists) }}
+          {{ getArtistsNames(song.artists) }}
         </span>
       </td>
-      <td>{{ song.track.album.name }}</td>
-      <td class="text-center">{{ song.track.duration_ms | msToMinutes }}</td>
+      <td>{{ song.album.name }}</td>
+      <td class="text-center">{{ song.duration_ms | msToMinutes }}</td>
     </tr>
     }
   </tbody>
