@@ -3,7 +3,7 @@ import { SpotifyConfiguration } from '../../environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { INavOptions } from '../interfaces/INavOptions';
 import { Router } from '@angular/router';
-import { ISong } from '../interfaces/ISong';
+import { ISong, ISongItem } from '../interfaces/ISong';
 
 @Injectable({
   providedIn: 'root',
@@ -90,23 +90,26 @@ export class SpotifyService {
     }
   }
 
-  async getLikedSongs(offset = 0, limit: 50): Promise<ISong[]> {
+  async getLikedSongs(offset = 0, limit: 50): Promise<ISong> {
     try {
       const songs = await this.spotifyApi.getMySavedTracks({ limit, offset });
 
-      return songs.items.map((song) => {
-        return {
-          name: song.track.name,
-          uri: song.track.uri,
-          duration_ms: song.track.duration_ms,
-          id: song.track.id,
-          artists: song.track.artists,
-          album: song.track.album,
-        };
-      });
+      return {
+        total: songs.total,
+        items: songs.items.map((song) => {
+          return {
+            name: song.track.name,
+            uri: song.track.uri,
+            duration_ms: song.track.duration_ms,
+            id: song.track.id,
+            artists: song.track.artists,
+            album: song.track.album,
+          };
+        }),
+      };
     } catch (error) {
       console.error(error);
-      return [];
+      return null;
     }
   }
 
@@ -120,7 +123,7 @@ export class SpotifyService {
     }
   }
 
-  async getCurrentSong(): Promise<ISong> {
+  async getCurrentSong(): Promise<ISongItem> {
     try {
       const song = await this.spotifyApi.getMyCurrentPlayingTrack();
 

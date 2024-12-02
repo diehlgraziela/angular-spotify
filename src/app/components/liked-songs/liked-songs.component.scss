@@ -1,5 +1,10 @@
 @use "variables" as v;
 
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 tr {
   color: v.$light-grey-color;
 

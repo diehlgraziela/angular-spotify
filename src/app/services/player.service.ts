@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SpotifyService } from './spotify.service';
-import { ISong } from '../interfaces/ISong';
+import { ISong, ISongItem } from '../interfaces/ISong';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
   // TODO - Replace with signals
-  currentSong = new BehaviorSubject<ISong>(null);
+  currentSong = new BehaviorSubject<ISongItem>(null);
   timerId: any = null;
 
   constructor(private spotifyService: SpotifyService) {
@@ -24,7 +24,7 @@ export class PlayerService {
     this.timerId = setTimeout(() => this.getCurrentSong(), 3000);
   }
 
-  setCurrentSong(song: ISong) {
+  setCurrentSong(song: ISongItem) {
     this.currentSong.next(song);
   }
 }

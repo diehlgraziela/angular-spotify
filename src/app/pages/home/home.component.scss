@@ -1,8 +1,7 @@
 @use "variables" as v;
 
-:host {
-  height: 100%;
-  gap: 1rem;
+.my-songs {
+  max-width: 100%;
 
   h2 {
     color: v.$primary-color;

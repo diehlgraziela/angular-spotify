@@ -1,36 +1,48 @@
-<table class="w-100 mt-4">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Título</th>
-      <th>Álbum</th>
-      <th class="text-center"><i class="pi pi-clock"></i></th>
-    </tr>
-  </thead>
+<div class="table-container">
+  <table class="w-100 mt-4">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Título</th>
+        <th>Álbum</th>
+        <th class="text-center"><i class="pi pi-clock"></i></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    @for(song of likedSongs; track song.id){
-    <tr
-      (click)="playSong(song)"
-      (mouseenter)="hover = $index"
-      [class.active]="song.id === currentSong.id"
-    >
-      <td>
-        @if(hover === $index){
-        <i class="pi pi-play"></i>
-        } @else {
-        {{ $index + 1 }}
-        }
-      </td>
-      <td class="flex flex-column">
-        <span class="song-name">{{ song.name }}</span>
-        <span class="artists-names">
-          {{ getArtistsNames(song.artists) }}
-        </span>
-      </td>
-      <td>{{ song.album.name }}</td>
-      <td class="text-center">{{ song.duration_ms | msToMinutes }}</td>
-    </tr>
-    }
-  </tbody>
-</table>
+    <tbody>
+      @for(song of likedSongs?.items; track song.id){
+      <tr
+        (click)="playSong(song)"
+        (mouseenter)="hover = $index"
+        [class.active]="song.id === currentSong.id"
+      >
+        <td>
+          @if(hover === $index){
+          <i class="pi pi-play"></i>
+          } @else {
+          {{ $index + 1 }}
+          }
+        </td>
+        <td class="flex flex-column">
+          <span class="song-name">{{ song.name }}</span>
+          <span class="artists-names">
+            {{ getArtistsNames(song.artists) }}
+          </span>
+        </td>
+        <td>{{ song.album.name }}</td>
+        <td class="text-center">{{ song.duration_ms | msToMinutes }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- Add pagination -->
+<!-- @if(likedSongs){
+<div>
+  <button><i class="pi pi-chevron-right"></i></button>
+  <button><i class="pi pi-chevron-left"></i></button>
+  <span>{{ likedSongs.total }}</span>
+</div>
+
+} -->

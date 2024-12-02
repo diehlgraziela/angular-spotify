@@ -1,4 +1,4 @@
-export interface ISong {
+export interface ISongItem {
   name: string;
   uri: string;
   duration_ms: number;
@@ -9,4 +9,9 @@ export interface ISong {
     uri: string;
   };
   artists: SpotifyApi.ArtistObjectSimplified[];
+}
+
+export interface ISong {
+  total: number;
+  items: ISongItem[];
 }
