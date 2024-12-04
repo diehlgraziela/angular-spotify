@@ -12,6 +12,7 @@ export class NavOptionComponent {
   icon = input<string>('');
   route = input<string>('');
   active = input<boolean>(false);
+  class = input<string>('');
   action = output<void>();
 
   click() {

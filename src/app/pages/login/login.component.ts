@@ -23,5 +23,10 @@ export class LoginComponent {
 
   login() {
     window.location.href = this.spotifyService.getLoginUrl();
+    // window.open(
+    //   this.spotifyService.getLoginUrl(),
+    //   'spotifylogin',
+    //   'resizable=1,width=420,height=620'
+    // );
   }
 }

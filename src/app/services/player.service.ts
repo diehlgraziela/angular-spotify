@@ -12,7 +12,7 @@ export class PlayerService {
   timerId: any = null;
 
   constructor(private spotifyService: SpotifyService) {
-    this.getCurrentSong();
+    // this.getCurrentSong();
   }
 
   async getCurrentSong() {
@@ -21,7 +21,7 @@ export class PlayerService {
     const song = await this.spotifyService.getCurrentSong();
     this.setCurrentSong(song);
 
-    this.timerId = setTimeout(() => this.getCurrentSong(), 3000);
+    // this.timerId = setTimeout(() => this.getCurrentSong(), 3000);
   }
 
   setCurrentSong(song: ISongItem) {

@@ -3,7 +3,7 @@
     routerLink="{{ route() }}"
     [class.active]="active()"
     (click)="click()"
-    class="nav-link flex"
+    [class]="'nav-link flex ' + class()"
   >
     <i class="pi pi-{{ icon() }}"></i> {{ name() }}
   </a>

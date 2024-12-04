@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { MsToMinutesPipe } from '../../pipes/ms-to-minutes.pipe';
 import { PlayerService } from '../../services/player.service';
@@ -21,7 +21,7 @@ export class LikedSongsComponent implements OnDestroy {
     private spotifyService: SpotifyService,
     private playerService: PlayerService
   ) {
-    this.getLikedSongs();
+    // this.getLikedSongs();
     this.getCurrentSong();
   }
 

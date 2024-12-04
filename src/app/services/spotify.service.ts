@@ -96,16 +96,17 @@ export class SpotifyService {
 
       return {
         total: songs.total,
-        items: songs.items.map((song) => {
-          return {
-            name: song.track.name,
-            uri: song.track.uri,
-            duration_ms: song.track.duration_ms,
-            id: song.track.id,
-            artists: song.track.artists,
-            album: song.track.album,
-          };
-        }),
+        items:
+          songs.items.map((song) => {
+            return {
+              name: song.track.name,
+              uri: song.track.uri,
+              duration_ms: song.track.duration_ms,
+              id: song.track.id,
+              artists: song.track.artists,
+              album: song.track.album,
+            };
+          }) || [],
       };
     } catch (error) {
       console.error(error);

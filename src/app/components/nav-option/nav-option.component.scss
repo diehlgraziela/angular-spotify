@@ -10,4 +10,12 @@
     background-color: v.$base-color;
     color: v.$primary-color;
   }
+
+  &.active:hover {
+    background-color: v.$base-color;
+  }
+
+  &:hover {
+    background-color: v.$base-color-lighten-3;
+  }
 }

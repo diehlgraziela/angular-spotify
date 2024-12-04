@@ -1,0 +1,16 @@
+@use "variables" as v;
+
+.player-card {
+  img {
+    width: 100%;
+  }
+
+  .player-buttons {
+    gap: 8px;
+
+    button {
+      background: none;
+      color: v.$light-grey-color;
+    }
+  }
+}

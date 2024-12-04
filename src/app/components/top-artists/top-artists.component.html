@@ -1,0 +1,11 @@
+<div>
+  <h3 class="font-weight-semibold font-size-md light-grey-color">
+    Top Artistas
+  </h3>
+
+  <ul class="mt-2">
+    @for(artist of topArtists; track artist.id){
+    <app-nav-option [name]="artist.name" [class]="'px-0'"></app-nav-option>
+    }
+  </ul>
+</div>

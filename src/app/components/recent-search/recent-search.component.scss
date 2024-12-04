@@ -1,0 +1,29 @@
+@use "variables" as v;
+
+.input-container {
+  position: relative;
+
+  button {
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    background: none;
+    color: v.$light-grey-color;
+    padding: 0;
+  }
+}
+
+.searches {
+  gap: 8px;
+  flex-wrap: wrap;
+
+  .chip {
+    cursor: pointer;
+  }
+
+  .chip:hover {
+    background-color: v.$light-grey-color;
+    color: v.$base-color;
+  }
+}

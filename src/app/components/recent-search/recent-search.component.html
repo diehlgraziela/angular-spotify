@@ -1,0 +1,19 @@
+<div class="input-container">
+  <input
+    [(ngModel)]="search"
+    (keyup)="handleSearch()"
+    type="text"
+    class="w-100"
+    placeholder="Pesquisar"
+  />
+  <button (click)="handleSearch()">
+    <i class="pi pi-search"></i>
+  </button>
+</div>
+
+<div class="searches flex flex-justify-end mt-2">
+  @for(item of recentSearches; track item){
+
+  <span (click)="setSearch(item)" class="chip">{{ item }}</span>
+  }
+</div>

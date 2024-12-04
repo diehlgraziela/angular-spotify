@@ -5,3 +5,8 @@ $base-color-lighten-3: #3a3a3a;
 $primary-color: #1db954;
 $white-color: #eeeeee;
 $light-grey-color: #bbbbbb;
+$grey-color: #969696;
+
+.light-grey-color {
+  color: $light-grey-color;
+}
