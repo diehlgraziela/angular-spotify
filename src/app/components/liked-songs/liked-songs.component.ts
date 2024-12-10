@@ -22,7 +22,7 @@ export class LikedSongsComponent implements OnDestroy {
     private playerService: PlayerService
   ) {
     // this.getLikedSongs();
-    this.getCurrentSong();
+    // this.getCurrentSong();
   }
 
   ngOnDestroy(): void {

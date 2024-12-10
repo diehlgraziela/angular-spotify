@@ -1,12 +1,13 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
 import { SpotifyService } from '../services/spotify.service';
+import { AuthService } from './auth.service';
 
 export const authGuard: CanMatchFn = async (route, segments) => {
   const router = inject(Router);
-  const spotifyService = inject(SpotifyService);
+  const authService = inject(AuthService);
 
-  const token = localStorage.getItem('token');
+  const token = authService.getToken();
 
   if (!token) {
     notAuthenticated(router);
@@ -15,7 +16,8 @@ export const authGuard: CanMatchFn = async (route, segments) => {
   //TODO - Validate expired token
 
   try {
-    const isUserCreated = await spotifyService.getSpotifyUser();
+    await authService.getUser();
+    const isUserCreated = authService.user;
     return !!isUserCreated ? true : notAuthenticated(router);
   } catch (error) {
     return notAuthenticated(router);

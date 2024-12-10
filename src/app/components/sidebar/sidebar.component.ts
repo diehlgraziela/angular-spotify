@@ -38,7 +38,7 @@ export class SidebarComponent {
   ];
 
   constructor(private spotifyService: SpotifyService) {
-    this.getPlaylists();
+    // this.getPlaylists();
   }
 
   async getPlaylists() {

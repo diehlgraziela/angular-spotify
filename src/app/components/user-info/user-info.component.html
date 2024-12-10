@@ -1,7 +1,7 @@
 <div class="flex">
   <div class="info">
     <img src="{{ user.images[0].url }}" alt="Imagem de perfil" />
-    <span class="username" [title]="user.display_name">
+    <span class="username" [title]="user?.display_name">
       {{ user.display_name }}
     </span>
   </div>

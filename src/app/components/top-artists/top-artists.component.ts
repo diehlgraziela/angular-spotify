@@ -12,7 +12,7 @@ export class TopArtistsComponent {
   topArtists: SpotifyApi.ArtistObjectFull[];
 
   constructor(private spotifyService: SpotifyService) {
-    this.getTopArtists();
+    // this.getTopArtists();
   }
 
   async getTopArtists() {

@@ -2,9 +2,9 @@ export const environment = {
   production: false,
 };
 
-export const SpotifyConfiguration = {
+export const config = {
   clientId: 'b82d81cab3f34476880a1dbed5ad6799',
-  authEndpoint: 'https://accounts.spotify.com/authorize',
+  authUrl: 'https://accounts.spotify.com/authorize',
   redirectUrl: 'http://localhost:4200/login/',
   scopes: [
     'user-read-currently-playing',

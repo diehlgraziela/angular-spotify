@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
+import { AuthService } from '../../auth/auth.service';
+import { IUser } from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-user-info',
@@ -8,13 +10,13 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrl: './user-info.component.scss',
 })
 export class UserInfoComponent {
-  user: SpotifyApi.CurrentUsersProfileResponse = null;
+  user: IUser;
 
-  constructor(private spotifyService: SpotifyService) {
-    this.user = spotifyService.user;
+  constructor(private authService: AuthService) {
+    this.user = authService.user;
   }
 
   logout() {
-    this.spotifyService.logout();
+    this.authService.logout();
   }
 }

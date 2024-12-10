@@ -11,7 +11,7 @@ export class TopArtistComponent {
   topArtist: SpotifyApi.ArtistObjectFull;
 
   constructor(private spotifyService: SpotifyService) {
-    this.getTopArtist();
+    // this.getTopArtist();
   }
 
   async getTopArtist() {
