@@ -10,8 +10,6 @@ import { GlobalService } from '../services/global.service';
   providedIn: 'root',
 })
 export class AuthService {
-  user: IUser;
-
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -46,13 +44,5 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
-  }
-
-  async getCurrentUser() {
-    try {
-      this.user = await this.globalService.callApi<IUser>('get', 'me');
-    } catch (error) {
-      console.error(error);
-    }
   }
 }

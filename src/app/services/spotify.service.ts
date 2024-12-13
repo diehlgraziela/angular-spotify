@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import Spotify from 'spotify-web-api-js';
 import { INavOptions } from '../interfaces/INavOptions';
 import { IUser } from '../interfaces/IUser';
-import { AuthService } from '../auth/auth.service';
 import { GlobalService } from './global.service';
 import { IUserPlaylists } from '../interfaces/IPlaylist';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,22 +13,10 @@ export class SpotifyService {
   spotifyApi: Spotify.SpotifyWebApiJs = null;
 
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private globalService: GlobalService
   ) {
     this.spotifyApi = new Spotify();
-  }
-
-  async getCurrentUserPlaylists(
-    offset = 0,
-    limit = 20
-  ): Promise<IUserPlaylists> {
-    const playlists = await this.globalService.callApi<IUserPlaylists>(
-      'get',
-      `users/${this.authService.user.id}/playlists?limit=${limit}&offset=${offset}`
-    );
-
-    return playlists;
   }
 
   async getTopArtists(limit = 10): Promise<any[]> {

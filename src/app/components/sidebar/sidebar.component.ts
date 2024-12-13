@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SpotifyService } from '../../services/spotify.service';
 import { NavOptionComponent } from '../nav-option/nav-option.component';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { INavOptions } from '../../interfaces/INavOptions';
 import { IUserPlaylists } from '../../interfaces/IPlaylist';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -38,11 +38,11 @@ export class SidebarComponent {
     },
   ];
 
-  constructor(private spotifyService: SpotifyService) {
+  constructor(private userService: UserService) {
     this.getPlaylists();
   }
 
   async getPlaylists() {
-    this.playlists = await this.spotifyService.getCurrentUserPlaylists();
+    this.playlists = await this.userService.getCurrentUserPlaylists();
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { AuthService } from '../../auth/auth.service';
 import { IUser } from '../../interfaces/IUser';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-info',
@@ -12,8 +13,11 @@ import { IUser } from '../../interfaces/IUser';
 export class UserInfoComponent {
   user: IUser;
 
-  constructor(private authService: AuthService) {
-    this.user = authService.user;
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {
+    this.user = userService.user;
   }
 
   logout() {

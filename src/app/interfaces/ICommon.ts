@@ -8,6 +8,12 @@ export interface IExternalUrls {
   spotify: string;
 }
 
+export interface IExternalIds {
+  isrc: string;
+  ean: string;
+  upc: string;
+}
+
 export interface IFollowers {
   href: string | null;
   total: number;

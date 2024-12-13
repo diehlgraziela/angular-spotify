@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { SpotifyService } from '../../services/spotify.service';
+import { UserService } from '../../services/user.service';
+import { IArtist } from '../../interfaces/IArtist';
+import { IImages } from '../../interfaces/ICommon';
 
 @Component({
   selector: 'app-top-artist',
@@ -8,14 +10,18 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrl: './top-artist.component.scss',
 })
 export class TopArtistComponent {
-  topArtist: SpotifyApi.ArtistObjectFull;
+  topArtist: IArtist;
 
-  constructor(private spotifyService: SpotifyService) {
-    // this.getTopArtist();
+  constructor(private userService: UserService) {
+    this.getTopArtist();
   }
 
   async getTopArtist() {
-    const artists = await this.spotifyService.getTopArtists(1);
-    this.topArtist = artists.pop();
+    const artist = await this.userService.getCurrentUserTopArtists(1);
+    this.topArtist = artist.items.pop();
+  }
+
+  getArtistImage(images: IImages[]) {
+    return images?.[0].url;
   }
 }

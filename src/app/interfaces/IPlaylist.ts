@@ -7,10 +7,10 @@ export interface IUserPlaylists {
   offset: number;
   previous: string | null;
   total: number;
-  items: ISimplifiedPlaylistItem[];
+  items: ISimplifiedPlaylist[];
 }
 
-interface ISimplifiedPlaylistItem {
+interface ISimplifiedPlaylist {
   collaborative: boolean;
   description: string | null;
   external_urls: IExternalUrls;
