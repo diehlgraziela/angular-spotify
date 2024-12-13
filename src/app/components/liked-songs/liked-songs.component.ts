@@ -1,8 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
-import { SpotifyService } from '../../services/spotify.service';
+import { Component } from '@angular/core';
 import { MsToMinutesPipe } from '../../pipes/ms-to-minutes.pipe';
-import { PlayerService } from '../../services/player.service';
-import { Subscription } from 'rxjs';
+import { UserService } from '../../services/user.service';
+import type { IUserSavedTracks } from '../../interfaces/IUser';
+import type { ITrack } from '../../interfaces/ITrack';
+import type { ISimplifiedArtist } from '../../interfaces/IArtist';
 
 @Component({
   selector: 'app-liked-songs',
@@ -10,42 +11,24 @@ import { Subscription } from 'rxjs';
   templateUrl: './liked-songs.component.html',
   styleUrl: './liked-songs.component.scss',
 })
-export class LikedSongsComponent implements OnDestroy {
-  likedSongs: any;
-  currentSong: any;
-  subscriptions: Subscription[] = [];
+export class LikedSongsComponent {
+  savedTracks: IUserSavedTracks;
+  currentTrack: ITrack;
   hover: number;
 
-  constructor(
-    private spotifyService: SpotifyService,
-    private playerService: PlayerService
-  ) {
-    // this.getLikedSongs();
-    // this.getCurrentSong();
+  constructor(private userService: UserService) {
+    this.getSavedTracks();
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  async getSavedTracks() {
+    this.savedTracks = await this.userService.getCurentUserSavedTracks(50, 0);
   }
 
-  async getLikedSongs() {
-    this.likedSongs = await this.spotifyService.getLikedSongs(0, 50);
+  playTrack(track: ITrack) {
+    this.currentTrack = track;
   }
 
-  getArtistsNames(artists: SpotifyApi.ArtistObjectSimplified[]) {
+  getArtistsNames(artists: ISimplifiedArtist[]) {
     return artists.map((artist) => artist.name).join(', ');
-  }
-
-  async playSong(song: any) {
-    await this.spotifyService.playSong(song.uri);
-    this.playerService.setCurrentSong(song);
-  }
-
-  getCurrentSong() {
-    const subscription = this.playerService.currentSong.subscribe(
-      (song) => (this.currentSong = song)
-    );
-
-    this.subscriptions.push(subscription);
   }
 }

@@ -1,4 +1,4 @@
-import { IImages } from './ICommon';
+import { IImages, IPage } from './ICommon';
 import { IArtist } from './IArtist';
 import { ITrack } from './ITrack';
 
@@ -22,19 +22,14 @@ interface IExternalUrls {
   spotify: string;
 }
 
-interface IUserTopItems {
-  href: string;
-  limit: number;
-  next: string | null;
-  offset: number;
-  previous: string | null;
-  total: number;
-}
-
-export interface IUserTopArtists extends IUserTopItems {
+export interface IUserTopArtists extends IPage {
   items: IArtist[];
 }
 
-export interface IUserTopTracks extends IUserTopItems {
+export interface IUserTopTracks extends IPage {
   items: ITrack[];
+}
+
+export interface IUserSavedTracks extends IPage {
+  items: { added_at: string; track: ITrack }[];
 }

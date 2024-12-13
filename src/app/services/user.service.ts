@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { GlobalService } from './global.service';
-import { IUser, IUserTopArtists, IUserTopTracks } from '../interfaces/IUser';
+import {
+  IUser,
+  IUserSavedTracks,
+  IUserTopArtists,
+  IUserTopTracks,
+} from '../interfaces/IUser';
 import { IUserPlaylists } from '../interfaces/IPlaylist';
 import { IArtist } from '../interfaces/IArtist';
 import { ITrack } from '../interfaces/ITrack';
@@ -66,6 +71,22 @@ export class UserService {
       );
 
       return topArtists;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getCurentUserSavedTracks(
+    limit = 50,
+    offset = 0
+  ): Promise<IUserSavedTracks> {
+    try {
+      const tracks = await this.globalService.callApi<IUserSavedTracks>(
+        'get',
+        `me/tracks?limit=${limit}&offset=${offset}`
+      );
+      return tracks;
     } catch (error) {
       console.error(error);
       return null;
