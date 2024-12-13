@@ -1,39 +1,37 @@
 import { Injectable } from '@angular/core';
 import Spotify from 'spotify-web-api-js';
 import { INavOptions } from '../interfaces/INavOptions';
-import { ISong, ISongItem } from '../interfaces/ISong';
-import { AuthService } from '../auth/auth.service';
 import { IUser } from '../interfaces/IUser';
+import { AuthService } from '../auth/auth.service';
+import { GlobalService } from './global.service';
+import { IUserPlaylists } from '../interfaces/IPlaylist';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpotifyService {
   spotifyApi: Spotify.SpotifyWebApiJs = null;
-  user: IUser;
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private globalService: GlobalService
+  ) {
     this.spotifyApi = new Spotify();
   }
 
-  async getUserPlaylists(offset = 0, limit = 50): Promise<INavOptions[]> {
-    const playlists = await this.spotifyApi.getUserPlaylists(this.user.id, {
-      limit,
-      offset,
-    });
+  async getCurrentUserPlaylists(
+    offset = 0,
+    limit = 20
+  ): Promise<IUserPlaylists> {
+    const playlists = await this.globalService.callApi<IUserPlaylists>(
+      'get',
+      `users/${this.authService.user.id}/playlists?limit=${limit}&offset=${offset}`
+    );
 
-    return playlists.items
-      .filter((playlist) => playlist?.id)
-      .map((playlist) => {
-        return {
-          name: playlist.name,
-          image: playlist.images[0].url,
-          id: playlist.id,
-        };
-      });
+    return playlists;
   }
 
-  async getTopArtists(limit = 10): Promise<SpotifyApi.ArtistObjectFull[]> {
+  async getTopArtists(limit = 10): Promise<any[]> {
     try {
       const topArtists = await this.spotifyApi.getMyTopArtists({
         limit,
@@ -46,7 +44,7 @@ export class SpotifyService {
     }
   }
 
-  async getLikedSongs(offset = 0, limit: 50): Promise<ISong> {
+  async getLikedSongs(offset = 0, limit: 50): Promise<any> {
     try {
       const songs = await this.spotifyApi.getMySavedTracks({ limit, offset });
 
@@ -80,7 +78,7 @@ export class SpotifyService {
     }
   }
 
-  async getCurrentSong(): Promise<ISongItem> {
+  async getCurrentSong(): Promise<any> {
     try {
       const song = await this.spotifyApi.getMyCurrentPlayingTrack();
 

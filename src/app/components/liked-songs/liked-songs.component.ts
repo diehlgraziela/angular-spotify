@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { MsToMinutesPipe } from '../../pipes/ms-to-minutes.pipe';
 import { PlayerService } from '../../services/player.service';
 import { Subscription } from 'rxjs';
-import { ISong, ISongItem } from '../../interfaces/ISong';
 
 @Component({
   selector: 'app-liked-songs',
@@ -12,8 +11,8 @@ import { ISong, ISongItem } from '../../interfaces/ISong';
   styleUrl: './liked-songs.component.scss',
 })
 export class LikedSongsComponent implements OnDestroy {
-  likedSongs: ISong;
-  currentSong: ISongItem;
+  likedSongs: any;
+  currentSong: any;
   subscriptions: Subscription[] = [];
   hover: number;
 
@@ -37,7 +36,7 @@ export class LikedSongsComponent implements OnDestroy {
     return artists.map((artist) => artist.name).join(', ');
   }
 
-  async playSong(song: ISongItem) {
+  async playSong(song: any) {
     await this.spotifyService.playSong(song.uri);
     this.playerService.setCurrentSong(song);
   }

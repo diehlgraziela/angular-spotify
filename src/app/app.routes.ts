@@ -11,12 +11,12 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
+      import('./pages/login/login.component').then((r) => r.LoginComponent),
   },
   {
     path: 'player',
     loadComponent: () =>
-      import('./pages/player/player.component').then((m) => m.PlayerComponent),
+      import('./pages/player/player.component').then((r) => r.PlayerComponent),
     canMatch: [authGuard],
     children: [
       { path: 'home', component: HomeComponent },

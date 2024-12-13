@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
-import { INavOptions } from '../../interfaces/INavOptions';
 import { NavOptionComponent } from '../nav-option/nav-option.component';
 import { UserInfoComponent } from '../user-info/user-info.component';
+import { INavOptions } from '../../interfaces/INavOptions';
+import { IUserPlaylists } from '../../interfaces/IPlaylist';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 })
 export class SidebarComponent {
   selectedOption = 'home';
-  playlists: INavOptions[] = [];
+  playlists: IUserPlaylists;
   navOptions: INavOptions[] = [
     {
       name: 'Home',
@@ -38,10 +39,10 @@ export class SidebarComponent {
   ];
 
   constructor(private spotifyService: SpotifyService) {
-    // this.getPlaylists();
+    this.getPlaylists();
   }
 
   async getPlaylists() {
-    this.playlists = await this.spotifyService.getUserPlaylists();
+    this.playlists = await this.spotifyService.getCurrentUserPlaylists();
   }
 }

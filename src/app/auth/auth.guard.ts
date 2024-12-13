@@ -16,7 +16,7 @@ export const authGuard: CanMatchFn = async (route, segments) => {
   //TODO - Validate expired token
 
   try {
-    await authService.getUser();
+    await authService.getCurrentUser();
     const isUserCreated = authService.user;
     return !!isUserCreated ? true : notAuthenticated(router);
   } catch (error) {

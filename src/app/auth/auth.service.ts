@@ -48,7 +48,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  async getUser() {
+  async getCurrentUser() {
     try {
       this.user = await this.globalService.callApi<IUser>('get', 'me');
     } catch (error) {

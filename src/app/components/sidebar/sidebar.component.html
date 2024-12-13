@@ -20,7 +20,7 @@
     <span class="font-weight-semibold font-size-md">Playlists</span>
 
     <ul class="playlists-options">
-      @for(playlist of playlists; track playlist.id){
+      @for(playlist of playlists?.items; track playlist.id){
       <app-nav-option
         [name]="playlist.name"
         [icon]="'headphones'"
