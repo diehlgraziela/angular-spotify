@@ -1,9 +1,18 @@
 @use "variables" as v;
 
-.my-songs {
-  max-width: 100%;
+.home {
+  height: 100%;
+  overflow-y: auto;
 
   h2 {
     color: v.$primary-color;
+  }
+
+  .top-artist {
+    max-height: 30%;
+  }
+
+  .saved-tracks {
+    max-height: 70%;
   }
 }
