@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SpotifyService } from '../../services/spotify.service';
 import { AuthService } from '../../auth/auth.service';
 import { IUser } from '../../interfaces/IUser';
 import { UserService } from '../../services/user.service';

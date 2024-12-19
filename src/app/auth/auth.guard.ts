@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import { CanMatchFn, Router } from '@angular/router';
-import { SpotifyService } from '../services/spotify.service';
 import { AuthService } from './auth.service';
 import { UserService } from '../services/user.service';
 

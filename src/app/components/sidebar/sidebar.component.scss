@@ -1,50 +1,28 @@
 @use "variables" as v;
 
-$h-logo: 50px;
-$h-nav-options: 120px;
-$h-user-info: 60px;
-
-:host {
+.sidebar {
   background-color: v.$base-color-lighten-1;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100%;
-  border-radius: 16px;
+  gap: 1rem;
   padding: 1rem;
+  border-radius: 16px;
 
-  .sidebar {
-    flex: 1;
+  width: v.$sidebar-width;
+  height: v.$container-height;
+  overflow-y: auto;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+
+  img {
+    width: 80%;
   }
 
-  .logo img {
-    height: $h-logo;
+  .playlists-options {
+    max-height: 350px;
+    overflow-y: auto;
   }
 
-  .nav-options {
-    gap: 4px;
-    height: $h-nav-options;
-  }
-
-  .playlists {
-    margin-top: 2rem;
-
-    span {
-      color: v.$light-grey-color;
-    }
-
-    .playlists-options {
-      max-height: calc(75vh - ($h-logo + $h-nav-options + $h-user-info));
-      overflow-y: auto;
-      margin-top: 1rem;
-    }
-  }
-
-  .user-info {
-    height: $h-user-info;
-    flex-grow: 0;
-    background: #333333;
-    border-radius: 4px;
-    padding: 0 8px;
+  @media screen and (max-width: v.$desktop-breakpoint) {
+    display: none;
   }
 }

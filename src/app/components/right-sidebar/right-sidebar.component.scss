@@ -1,14 +1,23 @@
 @use "variables" as v;
 
 .right-sidebar {
-  height: 100%;
-  max-width: 100%;
+  height: v.$container-height;
+  width: v.$sidebar-width;
   background-color: v.$base-color-lighten-1;
-  border-radius: 8px;
+  border-radius: 16px;
   padding: 1rem;
   gap: 2rem;
-}
 
-img {
-  width: 100%;
+  overflow-y: auto;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+
+  img {
+    width: 100%;
+  }
+
+  @media screen and (max-width: v.$desktop-breakpoint) {
+    display: none;
+  }
 }

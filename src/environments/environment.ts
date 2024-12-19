@@ -15,5 +15,8 @@ export const config = {
     'user-library-read',
     'playlist-read-private',
     'playlist-read-collaborative',
+    'streaming',
+    'user-read-email',
+    'user-read-private',
   ],
 };

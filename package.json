@@ -20,7 +20,6 @@
     "@angular/router": "^19.0.0",
     "primeicons": "^7.0.0",
     "rxjs": "~7.8.0",
-    "spotify-web-api-js": "^1.5.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

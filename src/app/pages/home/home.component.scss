@@ -1,18 +1,12 @@
 @use "variables" as v;
 
 .home {
-  height: 100%;
+  max-height: 100%;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     color: v.$primary-color;
-  }
-
-  .top-artist {
-    max-height: 30%;
-  }
-
-  .saved-tracks {
-    max-height: 70%;
   }
 }

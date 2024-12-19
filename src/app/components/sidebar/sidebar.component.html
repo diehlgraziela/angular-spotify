@@ -3,7 +3,7 @@
     <img src="spotify-logo.png" alt="Logo Spotify" />
   </div>
 
-  <ul class="nav-options flex flex-column w-100 mt-6">
+  <ul class="nav-options">
     @for(option of navOptions; track option.id){
 
     <app-nav-option
@@ -19,7 +19,7 @@
   <div class="playlists">
     <span class="font-weight-semibold font-size-md">Playlists</span>
 
-    <ul class="playlists-options">
+    <ul class="playlists-options mt-2">
       @for(playlist of playlists?.items; track playlist.id){
       <app-nav-option
         [name]="playlist.name"
@@ -30,8 +30,6 @@
       }
     </ul>
   </div>
-</div>
 
-<div class="user-info">
   <app-user-info></app-user-info>
 </div>

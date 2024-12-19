@@ -7,6 +7,14 @@ $white-color: #eeeeee;
 $light-grey-color: #bbbbbb;
 $grey-color: #969696;
 
+$sidebar-width: 240px;
+$container-height: calc(100vh - 2rem);
+
+$mobile-breakpoint: 640px;
+$tablet-breakpoint: 768px;
+$laptop-breakpoint: 1024px;
+$desktop-breakpoint: 1280px;
+
 .light-grey-color {
   color: $light-grey-color;
 }

@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import type { IUserSavedTracks } from '../../interfaces/IUser';
 import type { ITrack } from '../../interfaces/ITrack';
 import type { ISimplifiedArtist } from '../../interfaces/IArtist';
+import { PlaybackService } from '../../services/playback.service';
 
 @Component({
   selector: 'app-liked-songs',
@@ -16,7 +17,10 @@ export class LikedSongsComponent {
   currentTrack: ITrack;
   hover: number;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private playbackService: PlaybackService
+  ) {
     this.getSavedTracks();
   }
 
@@ -24,7 +28,8 @@ export class LikedSongsComponent {
     this.savedTracks = await this.userService.getCurentUserSavedTracks(50, 0);
   }
 
-  playTrack(track: ITrack) {
+  async playTrack(track: ITrack) {
+    await this.playbackService.playTrack(track.uri);
     this.currentTrack = track;
   }
 
