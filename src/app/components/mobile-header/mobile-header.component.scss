@@ -1,0 +1,19 @@
+@use "variables" as v;
+
+.mobile-header {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  height: v.$header-height;
+  border-radius: 16px;
+  background-color: v.$base-color-lighten-1;
+
+  img {
+    height: 40px;
+  }
+
+  i {
+    font-size: 1.3rem;
+  }
+}

@@ -174,8 +174,18 @@ table {
 
 .p {
   @for $i from 0 to 13 {
+    &a-#{$i} {
+      padding: #{4 * $i}px !important;
+    }
+
     &x-#{$i} {
       padding-left: #{4 * $i}px !important;
+      padding-right: #{4 * $i}px !important;
+    }
+
+    &y-#{$i} {
+      padding-top: #{4 * $i}px !important;
+      padding-bottom: #{4 * $i}px !important;
     }
   }
 }

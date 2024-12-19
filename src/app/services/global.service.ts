@@ -8,6 +8,9 @@ import { IUser } from '../interfaces/IUser';
 })
 export class GlobalService {
   private readonly BASE_URL = 'https://api.spotify.com/v1/';
+  // TODO - Use signals to detect screen size
+  // isMobile = window.innerWidth < 600;
+  // isDesktop = window.innerWidth > 1280;
 
   constructor(private http: HttpClient) {}
 

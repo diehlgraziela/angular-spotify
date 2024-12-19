@@ -9,5 +9,7 @@
 
   @media screen and (max-width: v.$desktop-breakpoint) {
     margin: 1rem;
+    margin-top: calc(2rem + v.$header-height);
+    height: calc(v.$container-height - (1rem + v.$header-height));
   }
 }
